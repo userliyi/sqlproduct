@@ -13,7 +13,7 @@ public class MainClass {
             FileInputStream fileInputStream=new FileInputStream(path);
             XSSFWorkbook workbook=new XSSFWorkbook(fileInputStream);
             MyExcelUtil myExcelUtil=new MyExcelUtil(workbook,3,"liyiwang");
-            ImportBody importBody=myExcelUtil.getValue(0,"0","",22,0);
+            ImportBody importBody=myExcelUtil.getValue(0,"0","",22,0,0);
             PowerImport powerImport = new PowerImport();
             List<String> list=new ArrayList<>();
             powerImport.getSql(importBody,list);

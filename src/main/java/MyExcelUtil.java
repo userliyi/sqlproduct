@@ -15,7 +15,6 @@ public class MyExcelUtil {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private int id;
-    private int cellNum=0;
     private String creator="";
     private int cout=0;
     public MyExcelUtil(){}
@@ -28,7 +27,7 @@ public class MyExcelUtil {
         }
     }
 
-    public ImportBody getValue(Integer parentId,String parentLevel,String level,Integer bigroleId,Integer rowNum) throws Exception {
+    public ImportBody getValue(Integer parentId,String parentLevel,String level,Integer bigroleId,Integer rowNum,Integer cellNum) throws Exception {
         if(cout<10000) {
             cout++;
             ImportBody importBody = new ImportBody();
@@ -53,15 +52,14 @@ public class MyExcelUtil {
             importBody.setCreator(creator);
             importBody.setBigRole(bigroleId);
             importBody.setCreatTime(getTime());
-            if (temp.length == 4) {
-                cellNum++;
+            if (temp.length == 5) {
                 List<ImportBody> list = new ArrayList<>();
-                int start = Integer.parseInt(temp[2]);
-                int end = Integer.parseInt(temp[3]);
+                int start = Integer.parseInt(temp[3]);
+                int end = Integer.parseInt(temp[4]);
                 String parent = parentLevel + "." + id;
                 Integer parentid = id;
                 for (int i = start; i <= end; i++) {
-                    ImportBody importBody1 = getValue(parentid, parent, level1, bigroleId, i);
+                    ImportBody importBody1 = getValue(parentid, parent, level1, bigroleId, i,Integer.parseInt(temp[2]));
                     list.add(importBody1);
                 }
                 importBody.setChild(list);

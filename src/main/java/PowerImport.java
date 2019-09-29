@@ -32,9 +32,9 @@ public class PowerImport {
         int id=importBody.getId();
         sb.append("id:");
         sb.append(id);
-        String zhname=importBody.getZhName();
-        sb.append("zhname:");
-        sb.append(zhname);
+//        String zhname=importBody.getZhName();
+//        sb.append("zhname:");
+//        sb.append(zhname);
         int parentId=importBody.getParentId();
         sb.append("parentId:");
         sb.append(parentId);
@@ -44,15 +44,15 @@ public class PowerImport {
         String level=importBody.getLevel();
         sb.append("level:");
         sb.append(level);
-        String time=importBody.getCreatTime();
-        sb.append("time:");
-        sb.append(time);
-        String creator=importBody.getCreator();
-        sb.append("creator:");
-        sb.append(creator);
-        int bigrole=importBody.getBigRole();
-        sb.append("bigrole");
-        sb.append(bigrole);
+//        String time=importBody.getCreatTime();
+//        sb.append("time:");
+//        sb.append(time);
+//        String creator=importBody.getCreator();
+//        sb.append("creator:");
+//        sb.append(creator);
+//        int bigrole=importBody.getBigRole();
+//        sb.append("bigrole");
+//        sb.append(bigrole);
         sb.append("\r\n");
         list.add(sb.toString());
         if(importBody.getChild()!=null){
