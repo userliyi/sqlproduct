@@ -5,6 +5,9 @@ import java.util.List;
 
 public class PowerImport {
     public static final String  baseSql="";
+    public String[] znName={"00","角色管理","创建角色","复制并创建角色","删除角色","修改角色名","分配角色","权限管理","修改权限"};
+    public String[] enName={"00","role","create","copy","delete","changename","distribute","auth","changemodule"};
+    public String[] arr={"5","5","51","52","53","54","56","6","57"};
     public PowerImport(){
 
     }
@@ -14,7 +17,7 @@ public class PowerImport {
 
             FileWriter writer = new FileWriter(file, true);
             for(String str:msg){
-                writer.write(str);
+                writer.write(str+"\n\r");
             }
             writer.close();
 
@@ -24,6 +27,40 @@ public class PowerImport {
 
             ex.getMessage();
 
+        }
+    }
+    public String addString(String str){
+            return  str+",";
+        }
+    public String addString(int str){
+        return  str+",";
+    }
+    public String addInt(int a){
+        return a+",";
+    }
+    public void getPowerImport(int bigroleId,List<String> sql,String zn_name,int startid){
+        znName[0]=zn_name;
+        enName[0]=bigroleId+"";
+        int prd1=startid+1;
+        int[] parent={0,startid,prd1,prd1,prd1,prd1,prd1,startid,startid+7};
+        String prd2=0+"."+startid+"."+prd1;
+        String prd3=0+"."+startid;
+        int mi=startid+7;
+        String[] parentId={"0",prd3,prd2,prd2,prd2,prd2,prd2,prd3,prd3+"."+mi};
+        for(int i=0;i<9;i++){
+            String mysql = startid+addString(znName[i])+ addInt(parent[i])+addString(parentId[i])+addString(getNext(parentId[i])+startid)+addString(enName[i])+addInt(0)+addString(arr[i])+addInt(3)+addString("liyiwang");
+            startid++;
+            sql.add(mysql);
+        }
+    }
+
+    public String getNext(String str){
+        if(str.contains(".")){
+            String mm=str.substring(2,str.length());
+            String newStr=mm.replace('.','-');
+            return newStr+"-";
+        }else {
+            return "";
         }
     }
 
